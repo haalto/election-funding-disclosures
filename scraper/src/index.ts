@@ -119,7 +119,7 @@ const parseRawFundingDisclosure = (rawData: string) => {
   return {
     A: parseDisclosersDetails(A),
     B: parseSummaryOfElectionCampaignExpensesAndFunding(B),
-    C: parseItemisationOfElectionCampaingExpenses(C),
+    C: parseSummaryOfElectionCampaignExpensesAndFunding(C),
     D: parseItemisationOFElectionCampaignFundingAndContributions(D),
     E: parseOptionalItemisation(E),
   };
