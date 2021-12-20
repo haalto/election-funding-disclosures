@@ -61,7 +61,7 @@ const getRawFundingDisclosure = async (uri: string) => {
   return $('div[class="ann_form"]').html();
 };
 
-const parseDisclosersDetails = (data: Element) => {
+const parseA = (data: Element) => {
   const $ = cheerio.load(data);
   const [name, title, party, district, _, supportGroup] = $("td")
     .toArray()
@@ -69,7 +69,7 @@ const parseDisclosersDetails = (data: Element) => {
   return { name, title, party, district, supportGroup };
 };
 
-const parseSummaryOfElectionCampaignExpensesAndFunding = (data: Element) => {
+const parseBandC = (data: Element) => {
   const $ = cheerio.load(data);
   const parsedData = $("tr")
     .toArray()
@@ -102,26 +102,25 @@ const parseSummaryOfElectionCampaignExpensesAndFunding = (data: Element) => {
   );
 };
 
-const parseItemisationOfElectionCampaingExpenses = (data: Element) => {};
+const parseC = (data: Element) => {};
 
-const parseItemisationOFElectionCampaignFundingAndContributions = (
-  data: Element
-) => {};
+const parseD = (data: Element) => {};
 
-const parseOptionalItemisation = (data: Element) => {};
+const parseE = (data: Element) => {};
 
 const parseRawFundingDisclosure = (rawData: string) => {
   const $ = cheerio.load(rawData);
   const formData = $('div[class="ann_form_table_basic"]').toArray();
 
+  //These are form sections from the disclosure form
   const [A, B, C, D, E] = formData;
 
   return {
-    A: parseDisclosersDetails(A),
-    B: parseSummaryOfElectionCampaignExpensesAndFunding(B),
-    C: parseSummaryOfElectionCampaignExpensesAndFunding(C),
-    D: parseItemisationOFElectionCampaignFundingAndContributions(D),
-    E: parseOptionalItemisation(E),
+    A: parseA(A),
+    B: parseBandC(B),
+    C: parseBandC(C),
+    D: parseD(D),
+    E: parseE(E),
   };
 };
 
